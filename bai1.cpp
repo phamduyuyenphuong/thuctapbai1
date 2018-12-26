@@ -77,11 +77,11 @@ void ThemMoi(Contact c)
 void LietKe(){
 	Contact c;
 	for(int i=0 ; i <db.size() ;i++){
-		cout<<"ten la: "<<c.ten<<"\n";
-		cout<<"sdt la: "<<c.sdt<<"\n";
-		cout<<"dia chi la: "<<c.diachi<<"\n";
-		cout<<"gmail la: "<<c.gmail<<"\n";
-		cout<<"gioi tinh la: "<<c.gioitinh<<"\n";
+		cout<<"ten la: "<<db[i].ten<<endl;
+		cout<<"sdt la: "<<db[i].sdt<<endl;
+		cout<<"dia chi la: "<<db[i].diachi<<endl;
+		cout<<"gmail la: "<<db[i].gmail<<endl;
+		cout<<"gioi tinh la: "<<db[i].gioitinh<<endl;
 	}
 
 }
