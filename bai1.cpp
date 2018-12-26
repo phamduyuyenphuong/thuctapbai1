@@ -27,7 +27,7 @@ void XoaContact(char*sdt);
 //xoa contact m
 //ghi db vao file
 vector<Contact>
-	TimTheoTen(char*ten);
+	TimTheoten(char*ten);
 // tim contact m co theo ten ten
 //them m vao bien vector
 //tra ve bien vector
@@ -50,7 +50,8 @@ int main(){
 	strcpy(c1.diachi,"nha trang");
 	c1.gioitinh=1;
 	ThemMoi(c1);
-	cout<<" danh ba moi "<<endl;
+	cout<<endl;
+	cout<<" danh ba moi "<<endl<<endl;
 	LietKe();
 	cout<<"danh ba sau khi cap nhat"<<endl;
 	Contact cmoi;
@@ -62,9 +63,8 @@ int main(){
 	CapNhat(cmoi);
 	cout<<"ban cap nhat sau khi xoa"<<endl;
 	XoaContact("0168435210");
-	Contact TimTheoTen("pipi");
+	Contact TimTheoten("pipi");
 	cout<<"contact tim kiem"<<endl;
-
 }
 
 void GhiVaodb( ){
@@ -107,36 +107,31 @@ void LietKe(){
 }
 void CapNhat(Contact c)
 {
-
-
 	FILE*f=fopen("db.dat","wb");
-	Contact cmoi;
-	
-	ThemMoi(cmoi);
-	
+//	Contact cmoi;
+	ThemMoi(c);
 	LietKe();
 	for(int i = 0 ; i < db.size() ; i++)
-			fwrite(&db[i],sizeof(db),1,f);	
+		fwrite(&db[i],sizeof(db),1,f);	
 		fclose(f);
-
 	
 }
-void XoaContact(char sdt[])
+void XoaContact(char*sd)
 // tim contact m co sdt trong db
 //xoa contact m
 //ghi db vao file
 {
 for(int i=0;i<db.size();i++)
 		{
-			if(strcmp(db[i].ten,sdt)==0)
+			if(strcmp(db[i].sdt,sd)==0)
 				db.erase(db.begin()+i);
 		}
 	LietKe();	
 }
-Contact TimTheoTen(char ten)
+Contact TimTheoten(char t[])
 {
 	for(int i=0;i<db.size();i++)
-			if(strcmp(db[i].ten,ten)==0)
+			if(strcmp(db[i].ten,t)==0)
 				return db[i];
 }
 
