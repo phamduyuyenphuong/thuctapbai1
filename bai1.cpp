@@ -11,13 +11,14 @@ typedef struct Contact{
 	bool gioitinh;
 }Contact;
 vector <Contact> db;
+
 //thêm moi 1 danh ba(contact) vào danh ba
 void ThemMoi(Contact C);
 //them vao db
 //ghi db vao file(danhba.dat)
 
 void LietKe();// in cac phan tu cua db ra man hinh
-void CapNhat(Contact C);
+void CapNhat(Contact c);
 //tim contact m co sdt c.sdt
 //cap nhat c vao m
 //ghi db vao file
@@ -42,8 +43,23 @@ int main(){
 	strcpy(c.diachi,"fafafadfa");
 	c.gioitinh=0;
 	ThemMoi(c);
+	Contact c1;
+	strcpy(c1.ten,"pipivdzvs");
+	strcpy(c1.sdt,"265650056565");
+	strcpy(c1.gmail,"asdaxzzs@gmail.com");
+	strcpy(c1.diachi,"nha trang");
+	c1.gioitinh=1;
+	ThemMoi(c1);
 	cout<<" danh ba moi "<<endl;
 	LietKe();
+	cout<<"danh ba sau khi cap nhat"<<endl;
+	Contact cmoi;
+	strcpy(cmoi.ten,"uyen phuong");
+	strcpy(cmoi.sdt,"0168435210");
+	strcpy(cmoi.gmail,"uyenphuong@gmail.com");
+	strcpy(cmoi.diachi,"quang nam");
+	cmoi.gioitinh=0;
+	CapNhat(cmoi);
 
 }
 
@@ -84,5 +100,16 @@ void LietKe(){
 		cout<<"gioi tinh la: "<<db[i].gioitinh<<endl;
 	}
 
+}
+void CapNhat(Contact c)
+{
+	FILE*f=fopen("db.dat","wb");
+	Contact cmoi;
+	ThemMoi(cmoi);
+	LietKe();
+	for(int i = 0 ; i < db.size() ; i++)
+		fwrite(&db[i],sizeof(db),1,f);	
+		fclose(f);
+	
 }
 
