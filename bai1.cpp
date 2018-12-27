@@ -26,11 +26,11 @@ void XoaContact(char*sdt);
 // tim contact m co sdt trong db
 //xoa contact m
 //ghi db vao file
-vector<Contact>
-	TimTheoten(char*ten);
+
 // tim contact m co theo ten ten
 //them m vao bien vector
 //tra ve bien vector
+void TimTheoten(char t[]);
 void GhiVaodb();
 void DocVaodb();
 int main(){
@@ -63,7 +63,7 @@ int main(){
 	CapNhat(cmoi);
 	cout<<"ban cap nhat sau khi xoa"<<endl;
 	XoaContact("0168435210");
-	Contact TimTheoten("pipi");
+	TimTheoten("pipi");
 	cout<<"contact tim kiem"<<endl;
 }
 
@@ -128,10 +128,11 @@ for(int i=0;i<db.size();i++)
 		}
 	LietKe();	
 }
-Contact TimTheoten(char t[])
+void TimTheoten(char t[])
 {
 	for(int i=0;i<db.size();i++)
 			if(strcmp(db[i].ten,t)==0)
-				return db[i];
+			
+			LietKe();
 }
 
