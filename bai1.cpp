@@ -1,6 +1,5 @@
 #include<iostream>
 #include<vector>
-
 #include <string.h>
 using namespace std;
 typedef struct Contact{
@@ -11,29 +10,26 @@ typedef struct Contact{
 	bool gioitinh;
 }Contact;
 vector <Contact> db;
-
+void GhiVaodb();
+void DocVaodb();
 //thêm moi 1 danh ba(contact) vào danh ba
 void ThemMoi(Contact C);
 //them vao db
 //ghi db vao file(danhba.dat)
-
 void LietKe();// in cac phan tu cua db ra man hinh
+void Xuat(Contact c);
 void CapNhat(char sdt[]);
 //tim contact m co sdt c.sdt
 //cap nhat c vao m
 //ghi db vao file
 void XoaContact(char*sdt);
-// tim contact m co sdt trong db
-//xoa contact m
-//ghi db vao file
-
-// tim contact m co theo ten ten
-//them m vao bien vector
-//tra ve bien vector
+/*tim contact m co sdt trong db
+xoa contact m
+ghi db vao file*/
 void TimTheoten(char t[]);
-void GhiVaodb();
-void DocVaodb();
-void Xuat(Contact c);
+/* tim contact m co theo ten ten
+them m vao bien vector
+tra ve bien vector*/
 int main(){
 	DocVaodb();
 	LietKe();
@@ -72,7 +68,7 @@ int main(){
 	TimTheoten("tram");
 	
 }
-
+// ghi danh ba vao file .dat(nhi phan)
 void GhiVaodb( ){
 	FILE*f=fopen("db.dat","wb");// mo file de viet
 	Contact c;
@@ -80,7 +76,7 @@ void GhiVaodb( ){
 		fwrite(&db[i],sizeof(db),1,f);	//ghi contact vao file db.dat
 		fclose(f);
 }
-void DocVaodb(){
+void DocVaodb(){// doc danh ba tu file nhi phan
 	db.clear();
 	FILE*f =fopen("db.dat","rb");
 	if( f != NULL)
@@ -94,13 +90,13 @@ void DocVaodb(){
 			db.pop_back();
 	}
 }
-void ThemMoi(Contact c)
+void ThemMoi(Contact c)// them cac contact c vao file .dat
 {
 	  db.push_back(c); // them mot gia tri cho vector
 	  GhiVaodb();
 }
 
-void LietKe(){
+void LietKe(){// liet ke cac contact c 
 	Contact c;
 	for(int i=0 ; i <db.size() ;i++){
 		cout<<"ten la: "<<db[i].ten<<endl;
@@ -111,7 +107,7 @@ void LietKe(){
 	}
 
 }
-void Xuat(Contact c){
+void Xuat(Contact c){// in ra man hinh contact c
 		cout<<"ten la: "<<c.ten<<endl;
 		cout<<"sdt la: "<<c.sdt<<endl;
 		cout<<"dia chi la: "<<c.diachi<<endl;
@@ -130,10 +126,7 @@ for(int i = 0; i < db.size(); i++)
 			Xuat(db[i]);}
 	
 }
-
-
-
-void XoaContact(char sd[])
+void XoaContact(char sd[])// xoa contact theo sdt
 // tim contact m co sdt trong db
 //xoa contact m
 //ghi db vao file
@@ -145,7 +138,7 @@ for(int i=0;i<db.size();i++)
 	cout<<"cac gia tri con lai ";
 	LietKe();	
 }
-void TimTheoten(char t[])
+void TimTheoten(char t[])// tim contact theo ten
 {
 	for(int i=0;i<db.size();i++)
 			if(strcmp(db[i].ten,t)==0)// so sanh de tim ten trong danh sach voi ten nhap
