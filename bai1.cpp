@@ -18,7 +18,7 @@ void ThemMoi(Contact C);
 //ghi db vao file(danhba.dat)
 
 void LietKe();// in cac phan tu cua db ra man hinh
-void CapNhat(Contact c);
+void CapNhat(char sdt[]);
 //tim contact m co sdt c.sdt
 //cap nhat c vao m
 //ghi db vao file
@@ -39,14 +39,14 @@ int main(){
 	LietKe();
 	Contact c;
 	strcpy(c.ten,"pipi");
-	strcpy(c.sdt,"2656565400");
+	strcpy(c.sdt,"354");
 	strcpy(c.gmail,"asdas@gmail.com");
 	strcpy(c.diachi,"fafafadfa");
 	c.gioitinh=0;
 	ThemMoi(c);
 	Contact c1;
 	strcpy(c1.ten,"thu");
-	strcpy(c1.sdt,"265650056565");
+	strcpy(c1.sdt,"789");
 	strcpy(c1.gmail,"asdaxzzs@gmail.com");
 	strcpy(c1.diachi,"nha trang");
 	c1.gioitinh=1;
@@ -61,16 +61,13 @@ int main(){
 	cout<<endl;
 	cout<<" danh ba moi "<<endl<<endl;
 	LietKe();
-	cout<<"danh ba sau khi cap nhat"<<endl;
-	Contact cmoi;
-	strcpy(cmoi.ten,"uyen phuong");
-	strcpy(cmoi.sdt,"0168435210");
-	strcpy(cmoi.gmail,"uyenphuong@gmail.com");
-	strcpy(cmoi.diachi,"quang nam");
-	cmoi.gioitinh=0;
-	CapNhat(cmoi);
+	//
+	cout << "Danh ba sau khi cap nhat " << endl;
+	CapNhat("354");
+	//
 	cout<<"ban cap nhat sau khi xoa"<<endl;
-	XoaContact("0168435210");
+	XoaContact("789");
+	//
 	cout<<"contact tim kiem"<<endl;
 	TimTheoten("tram");
 	
@@ -99,7 +96,7 @@ void DocVaodb(){
 }
 void ThemMoi(Contact c)
 {
-	  db.push_back(c);
+	  db.push_back(c); // them mot gia tri cho vector
 	  GhiVaodb();
 }
 
@@ -121,24 +118,28 @@ void Xuat(Contact c){
 		cout<<"gmail la: "<<c.gmail<<endl;
 		cout<<"gioi tinh la: "<<c.gioitinh<<endl;
 }
-void CapNhat(Contact c)
+void CapNhat(char sd[])// cap nhat danh ba theo sdt
+//tim contact m co sdt c.sdt
+//cap nhat c vao m
+//ghi db vao file
 {
-	FILE*f=fopen("db.dat","wb");
-//	Contact cmoi;
-	ThemMoi(c);
-	LietKe();
-	for(int i = 0 ; i < db.size() ; i++)
-		fwrite(&db[i],sizeof(db),1,f);	
-		fclose(f);
+	
+for(int i = 0; i < db.size(); i++)
+		{if(strcmp(db[i].sdt, sd) == 0)
+			strcpy(db[i].ten, "Uyen Phuong");
+			Xuat(db[i]);}
 	
 }
+
+
+
 void XoaContact(char sd[])
 // tim contact m co sdt trong db
 //xoa contact m
 //ghi db vao file
 {
 for(int i=0;i<db.size();i++)
-			if(strcmp(db[i].sdt,sd)==0)// so sanh db.sdt voi sdt can tim
+			if(strcmp(db[i].sdt,sd)==0)// so sanh db.sdt voi sdt can tim strcmp chuoi
 				db.erase(db.begin()+i);//xoa 
 		
 	cout<<"cac gia tri con lai ";
