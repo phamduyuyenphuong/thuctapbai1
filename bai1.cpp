@@ -56,7 +56,7 @@ int main(){
 	ThemMoi(c2);
 	cout<<endl;
 	cout<<" danh ba moi "<<endl<<endl;
-	LietKe();
+	
 	//
 	cout << "Danh ba sau khi cap nhat " << endl;
 	CapNhat("354");
